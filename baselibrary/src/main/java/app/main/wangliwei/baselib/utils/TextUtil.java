@@ -1,0 +1,258 @@
+package app.main.wangliwei.baselib.utils;
+
+import android.text.TextUtils;
+
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
+/**
+ * Created by wlw on 2018/4/10.
+ */
+
+public final class TextUtil {
+    /**
+     * 格式化银行卡号
+     *
+     * @param bankcardNumber
+     * @return
+     */
+    public static String formatBankcardNumber(String bankcardNumber) {
+        if (TextUtils.isEmpty(bankcardNumber)) {
+            return "";
+        }
+        StringBuilder stringBuilder = new StringBuilder();
+        int splitNumber = 0;
+        for (int i = 0; i < bankcardNumber.length(); i++) {
+            stringBuilder.append(bankcardNumber.charAt(i));
+            splitNumber++;
+            if (splitNumber == 4) {
+                stringBuilder.append(" ");
+                splitNumber = 0;
+            }
+        }
+        return stringBuilder.toString();
+    }
+
+    /**
+     * 隐藏手机号
+     *
+     * @param mobile
+     * @return
+     */
+    public static String hideMobile(String mobile) {
+        if (TextUtils.isEmpty(mobile)) {
+            return "";
+        }
+        //隐藏邮箱@前四位
+        if (mobile.contains("@")) {
+            return mobile.substring(0, mobile.indexOf("@") - 4 > 0 ? mobile.indexOf("@") - 4 : 1) + "****" + mobile.substring(mobile.indexOf("@"), mobile.length());
+        }
+        if (mobile.length() == 11) {
+            return mobile.substring(0, 3) + "****" + mobile.substring(mobile.length() - 4, mobile.length());
+        } else {
+            return mobile;
+        }
+    }
+
+    /**
+     * 判定是否8位以内数字
+     *
+     * @param number
+     * @return
+     */
+    public static boolean isNumber(float number) {
+        Pattern patternNumber = Pattern.compile("^([0-9]+(.[0-9]{1,8})?)$");
+        Matcher matcherNumber = patternNumber.matcher(String.valueOf(number));
+        boolean bNumber = matcherNumber.matches();
+        return bNumber;
+    }
+
+    /**
+     * 判定密码是否符合8-20位非纯数字字符，不含特殊字符
+     *
+     * @param password
+     * @return
+     */
+    public static boolean isillegal(String password) {
+        Pattern patternNumber = Pattern.compile("^(?![0-9]+$)(?![a-zA-Z]+$)[a-zA-Z0-9]{8,20}");
+        Matcher matcherNumber = patternNumber.matcher(password);
+        return !matcherNumber.matches();
+    }
+
+    /**
+     * Return whether the string is null or 0-length.
+     *
+     * @param s The string.
+     * @return {@code true}: yes<br> {@code false}: no
+     */
+    public static boolean isEmpty(final CharSequence s) {
+        return s == null || s.length() == 0;
+    }
+
+    /**
+     * Return whether the string is null or whitespace.
+     *
+     * @param s The string.
+     * @return {@code true}: yes<br> {@code false}: no
+     */
+    public static boolean isTrimEmpty(final String s) {
+        return (s == null || s.trim().length() == 0);
+    }
+
+    /**
+     * Return whether the string is null or white space.
+     *
+     * @param s The string.
+     * @return {@code true}: yes<br> {@code false}: no
+     */
+    public static boolean isSpace(final String s) {
+        if (s == null) return true;
+        for (int i = 0, len = s.length(); i < len; ++i) {
+            if (!Character.isWhitespace(s.charAt(i))) {
+                return false;
+            }
+        }
+        return true;
+    }
+
+    /**
+     * Return whether string1 is equals to string2.
+     *
+     * @param s1 The first string.
+     * @param s2 The second string.
+     * @return {@code true}: yes<br>{@code false}: no
+     */
+    public static boolean equals(final CharSequence s1, final CharSequence s2) {
+        if (s1 == s2) return true;
+        int length;
+        if (s1 != null && s2 != null && (length = s1.length()) == s2.length()) {
+            if (s1 instanceof String && s2 instanceof String) {
+                return s1.equals(s2);
+            } else {
+                for (int i = 0; i < length; i++) {
+                    if (s1.charAt(i) != s2.charAt(i)) return false;
+                }
+                return true;
+            }
+        }
+        return false;
+    }
+
+    /**
+     * Return whether string1 is equals to string2, ignoring case considerations..
+     *
+     * @param s1 The first string.
+     * @param s2 The second string.
+     * @return {@code true}: yes<br>{@code false}: no
+     */
+    public static boolean equalsIgnoreCase(final String s1, final String s2) {
+        return s1 == null ? s2 == null : s1.equalsIgnoreCase(s2);
+    }
+
+    /**
+     * Return {@code ""} if string equals null.
+     *
+     * @param s The string.
+     * @return {@code ""} if string equals null
+     */
+    public static String null2Length0(final String s) {
+        return s == null ? "" : s;
+    }
+
+    /**
+     * Return the length of string.
+     *
+     * @param s The string.
+     * @return the length of string
+     */
+    public static int length(final CharSequence s) {
+        return s == null ? 0 : s.length();
+    }
+
+    /**
+     * Set the first letter of string upper.
+     *
+     * @param s The string.
+     * @return the string with first letter upper.
+     */
+    public static String upperFirstLetter(final String s) {
+        if (s == null || s.length() == 0) return "";
+        if (!Character.isLowerCase(s.charAt(0))) return s;
+        return String.valueOf((char) (s.charAt(0) - 32)) + s.substring(1);
+    }
+
+    /**
+     * Set the first letter of string lower.
+     *
+     * @param s The string.
+     * @return the string with first letter lower.
+     */
+    public static String lowerFirstLetter(final String s) {
+        if (s == null || s.length() == 0) return "";
+        if (!Character.isUpperCase(s.charAt(0))) return s;
+        return String.valueOf((char) (s.charAt(0) + 32)) + s.substring(1);
+    }
+
+    /**
+     * Reverse the string.
+     *
+     * @param s The string.
+     * @return the reverse string.
+     */
+    public static String reverse(final String s) {
+        if (s == null) return "";
+        int len = s.length();
+        if (len <= 1) return s;
+        int mid = len >> 1;
+        char[] chars = s.toCharArray();
+        char c;
+        for (int i = 0; i < mid; ++i) {
+            c = chars[i];
+            chars[i] = chars[len - i - 1];
+            chars[len - i - 1] = c;
+        }
+        return new String(chars);
+    }
+
+    /**
+     * Convert string to DBC.
+     *
+     * @param s The string.
+     * @return the DBC string
+     */
+    public static String toDBC(final String s) {
+        if (s == null || s.length() == 0) return "";
+        char[] chars = s.toCharArray();
+        for (int i = 0, len = chars.length; i < len; i++) {
+            if (chars[i] == 12288) {
+                chars[i] = ' ';
+            } else if (65281 <= chars[i] && chars[i] <= 65374) {
+                chars[i] = (char) (chars[i] - 65248);
+            } else {
+                chars[i] = chars[i];
+            }
+        }
+        return new String(chars);
+    }
+
+    /**
+     * Convert string to SBC.
+     *
+     * @param s The string.
+     * @return the SBC string
+     */
+    public static String toSBC(final String s) {
+        if (s == null || s.length() == 0) return "";
+        char[] chars = s.toCharArray();
+        for (int i = 0, len = chars.length; i < len; i++) {
+            if (chars[i] == ' ') {
+                chars[i] = (char) 12288;
+            } else if (33 <= chars[i] && chars[i] <= 126) {
+                chars[i] = (char) (chars[i] + 65248);
+            } else {
+                chars[i] = chars[i];
+            }
+        }
+        return new String(chars);
+    }
+}
