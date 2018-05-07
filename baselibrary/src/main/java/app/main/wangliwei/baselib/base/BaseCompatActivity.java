@@ -23,6 +23,7 @@ public abstract class BaseCompatActivity extends BaseActivity {
         setContentView(getLayoutId());
         unbinder = ButterKnife.bind(this);
         initData();
+        getSupportActionBar().hide();
     }
 
     public abstract int getLayoutId();

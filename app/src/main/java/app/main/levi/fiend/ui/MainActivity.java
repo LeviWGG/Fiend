@@ -6,6 +6,7 @@ import android.support.annotation.Nullable;
 import app.main.levi.fiend.R;
 import app.main.wangliwei.baselib.base.BaseMVPActivity;
 import app.main.wangliwei.baselib.base.BasePresenter;
+import app.main.wangliwei.baselib.utils.StatusBarUtil;
 
 public class MainActivity extends BaseMVPActivity {
 
@@ -26,6 +27,9 @@ public class MainActivity extends BaseMVPActivity {
     }
 
     private void initView() {
+        MainFragment mainFragment = new MainFragment();
+        loadRootFragment(R.id.fragment_content,mainFragment);
 
+        StatusBarUtil.setTranslucentForImageView(this,0,mainFragment.getView());
     }
 }
