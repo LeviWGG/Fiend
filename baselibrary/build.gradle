@@ -86,6 +86,8 @@ dependencies {
     //butterknife
     compile 'com.jakewharton:butterknife:8.5.1'
     annotationProcessor 'com.jakewharton:butterknife-compiler:8.5.1'
+    //SmartTabLayout
+    compile 'com.ogaclejapan.smarttablayout:library:1.6.1@aar'//https://github.com/ogaclejapan/SmartTabLayout
     compile 'com.yqritc:recyclerview-flexibledivider:1.4.0'//https://github.com/yqritc/RecyclerView-FlexibleDivider
     compile 'com.github.CymChad:BaseRecyclerViewAdapterHelper:2.9.35'//https://github.com/CymChad/BaseRecyclerViewAdapterHelper
     compile 'cn.bingoogolapple:bga-qrcode-zxing:1.2.1'

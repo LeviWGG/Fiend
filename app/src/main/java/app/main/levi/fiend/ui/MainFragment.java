@@ -95,7 +95,7 @@ public class MainFragment extends BaseMVPFragment {
             case R.id.tab_mine :
                 if(MINE == selected) {return;}
                 imageMine.setImageResource(R.drawable.mine_press);
-                textFollow.setTextColor(ViewUtil.getResourceColor(R.color.Color_ff4040));
+                textMine.setTextColor(ViewUtil.getResourceColor(R.color.Color_ff4040));
                 showHideFragment(fragments[MINE],fragments[selected]);
                 selected = MINE;
                 setTabNormal();

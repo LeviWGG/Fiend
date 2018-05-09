@@ -1,13 +1,29 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <TextView
-        android:layout_width="wrap_content"
+    <com.ogaclejapan.smarttablayout.SmartTabLayout
+        android:id="@+id/layout_tab_home"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:text="home"/>
+        android:paddingTop="30dp"
+        app:stl_defaultTabTextColor="@drawable/tab_home"
+        app:stl_defaultTabTextSize="16sp"
+        app:stl_distributeEvenly="true"
+        app:stl_dividerColor="@android:color/transparent"
+        app:stl_indicatorColor="@color/Color_ff4040"
+        app:stl_indicatorThickness="2dp"
+        app:stl_indicatorWidth="45dp"
+        app:stl_underlineThickness="0dp">
+    </com.ogaclejapan.smarttablayout.SmartTabLayout>
 
-</FrameLayout>
+    <android.support.v4.view.ViewPager
+        android:id="@+id/view_paper"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+    </android.support.v4.view.ViewPager>
+
+</LinearLayout>
