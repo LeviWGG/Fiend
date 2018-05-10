@@ -8,7 +8,7 @@
     <com.ogaclejapan.smarttablayout.SmartTabLayout
         android:id="@+id/layout_tab_home"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="70dp"
         android:paddingTop="30dp"
         app:stl_defaultTabTextColor="@drawable/tab_home"
         app:stl_defaultTabTextSize="16sp"

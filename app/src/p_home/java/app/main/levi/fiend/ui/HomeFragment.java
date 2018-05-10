@@ -9,8 +9,10 @@ import android.view.View;
 import com.ogaclejapan.smarttablayout.SmartTabLayout;
 
 import app.main.levi.fiend.R;
+import app.main.levi.fiend.adapter.HomeTabAdpter;
 import app.main.wangliwei.baselib.base.BaseMVPFragment;
 import app.main.wangliwei.baselib.base.BasePresenter;
+import app.main.wangliwei.baselib.utils.ViewUtil;
 import butterknife.BindView;
 
 /**
@@ -23,6 +25,9 @@ public class HomeFragment extends BaseMVPFragment {
     SmartTabLayout smartTabLayout;
     @BindView(R.id.view_paper)
     ViewPager viewPager;
+
+    private String[] mTabs = {ViewUtil.getResourceString(R.string.news),ViewUtil.getResourceString(R.string.wechat_new)};
+    private BaseMVPFragment[] mFragments;
 
     @Override
     public BasePresenter initPresenter() {
@@ -42,6 +47,12 @@ public class HomeFragment extends BaseMVPFragment {
 
     @Override
     public void initView(@Nullable Bundle savedInstanceState) {
+        mFragments = new BaseMVPFragment[2];
+        mFragments[0] = new NewsFragment();
+        mFragments[1] = new WechatNewsFragment();
 
+        HomeTabAdpter homeTabAdpter = new HomeTabAdpter(getChildFragmentManager(),mFragments,mTabs);
+        viewPager.setAdapter(homeTabAdpter);
+        smartTabLayout.setViewPager(viewPager);
     }
 }

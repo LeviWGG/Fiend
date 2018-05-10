@@ -1,6 +1,7 @@
 package app.main.levi.fiend.ui;
 
 import android.os.Bundle;
+import android.os.Handler;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.view.View;
@@ -11,6 +12,7 @@ import android.widget.TextView;
 import app.main.levi.fiend.R;
 import app.main.wangliwei.baselib.base.BaseMVPFragment;
 import app.main.wangliwei.baselib.base.BasePresenter;
+import app.main.wangliwei.baselib.utils.SimpleToast;
 import app.main.wangliwei.baselib.utils.ViewUtil;
 import butterknife.BindView;
 import butterknife.OnClick;
@@ -39,6 +41,8 @@ public class MainFragment extends BaseMVPFragment {
     TextView textFollow;
     @BindView(R.id.text_mine)
     TextView textMine;
+
+    private boolean isExit = false;
 
     public static final int HOME = 0;
     public static final int FOLLOW = 1;
@@ -117,5 +121,22 @@ public class MainFragment extends BaseMVPFragment {
             imageMine.setImageResource(R.drawable.mine);
             textMine.setTextColor(ViewUtil.getResourceColor(R.color.Color_2c2c2c));
         }
+    }
+
+    @Override
+    public boolean onBackPressedSupport() {
+        if(isExit) {
+            _mActivity.finish();
+        }else {
+            SimpleToast.showShort("再按一次退出");
+            isExit = true;
+            new Handler().postDelayed(new Runnable() {
+                @Override
+                public void run() {
+                    isExit = false;
+                }
+            },1500);
+        }
+        return true;
     }
 }
