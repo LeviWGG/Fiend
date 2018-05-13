@@ -21,7 +21,7 @@ public class ServiceFactory {
     public Retrofit create(String url) {
         return new Retrofit.Builder().baseUrl(url)
                 .client(getOkhttpClient())
-                .addConverterFactory(GsonConverterFactory.create())
+                .addConverterFactory(BaseConvert.create())
                 .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
                 .build();
     }

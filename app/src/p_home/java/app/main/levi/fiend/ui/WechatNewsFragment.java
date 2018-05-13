@@ -6,6 +6,9 @@ import android.support.annotation.Nullable;
 import android.view.View;
 
 import app.main.levi.fiend.R;
+import app.main.levi.fiend.bean.Weixin;
+import app.main.levi.fiend.contract.IWechatContract;
+import app.main.levi.fiend.contract.WechatPresenterImp;
 import app.main.wangliwei.baselib.base.BaseMVPFragment;
 import app.main.wangliwei.baselib.base.BasePresenter;
 
@@ -13,11 +16,8 @@ import app.main.wangliwei.baselib.base.BasePresenter;
  * Created by wlw on 2018/5/9.
  */
 
-public class WechatNewsFragment extends BaseMVPFragment {
-    @Override
-    public BasePresenter initPresenter() {
-        return null;
-    }
+public class WechatNewsFragment extends BaseMVPFragment<IWechatContract.IWechatPresenter>
+        implements IWechatContract.IWechatView {
 
     @Override
     public int getLayoutId() {
@@ -32,6 +32,16 @@ public class WechatNewsFragment extends BaseMVPFragment {
 
     @Override
     public void initView(@Nullable Bundle savedInstanceState) {
+
+    }
+
+    @Override
+    public IWechatContract.IWechatPresenter initPresenter() {
+        return new WechatPresenterImp(this);
+    }
+
+    @Override
+    public void onSuccess(Weixin weixin) {
 
     }
 }
