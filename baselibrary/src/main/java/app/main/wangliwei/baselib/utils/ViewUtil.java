@@ -11,7 +11,12 @@ import android.support.v4.content.ContextCompat;
 import android.text.method.HideReturnsTransformationMethod;
 import android.text.method.PasswordTransformationMethod;
 import android.util.DisplayMetrics;
+import android.view.View;
 import android.view.WindowManager;
+import android.view.animation.AlphaAnimation;
+import android.view.animation.Animation;
+import android.view.animation.AnimationSet;
+import android.view.animation.TranslateAnimation;
 import android.widget.EditText;
 import android.widget.TextView;
 
@@ -140,6 +145,32 @@ public class ViewUtil {
             return 0;
         }
         return statusHeight;
+    }
+    
+    /**
+     * 设置向右滑动动效
+     *
+     * @param view
+     */
+    public static void setScrollGoRightAnimation(View view) {
+        AnimationSet animationSet = new AnimationSet(true);
+
+        AlphaAnimation alphaAnimation = new AlphaAnimation(1f, 0f);
+        alphaAnimation.setDuration(1000);
+        alphaAnimation.setRepeatCount(Integer.MAX_VALUE);
+
+        TranslateAnimation translate = new TranslateAnimation(
+                Animation.RELATIVE_TO_SELF, 0f,
+                Animation.RELATIVE_TO_SELF, 0.8f,
+                Animation.RELATIVE_TO_SELF, 0f,
+                Animation.RELATIVE_TO_SELF, 0f);
+
+        translate.setDuration(1000);
+        translate.setRepeatCount(Integer.MAX_VALUE);
+
+        animationSet.addAnimation(translate);
+        animationSet.addAnimation(alphaAnimation);
+        view.startAnimation(animationSet);
     }
 
 }
