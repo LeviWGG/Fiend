@@ -15,7 +15,7 @@ public class NumberUtil {
      */
     public static String toIntAndFormat(String number) {
         String style = "#,##0";
-        DecimalFormat df = new DecimalFormat(style);
+        DecimalFormat df = getDefaultDecimalFormat(style);
         return df.format(_toInt(number));
     }
 
@@ -27,7 +27,7 @@ public class NumberUtil {
      */
     public static String to2DecimalAndFormat(String number) {
         String style = "#,##0.00";
-        DecimalFormat df = new DecimalFormat(style);
+        DecimalFormat df = getDefaultDecimalFormat(style);
         return df.format(_to2Decimal(number));
     }
 
@@ -39,8 +39,49 @@ public class NumberUtil {
      */
     public static String to2Decimal(String number) {
         String style = "0.00";
-        DecimalFormat df = new DecimalFormat(style);
+        DecimalFormat df = getDefaultDecimalFormat(style);
         return df.format(_to2Decimal(number));
+    }
+
+    /**
+     * 保留8位小数
+     *
+     * @param number
+     * @return
+     */
+    public static String to8Decimal(String number) {
+        String style = "0.00000000";
+        DecimalFormat df = getDefaultDecimalFormat(style);
+        return df.format(_to8Decimal(number));
+    }
+
+    /**
+     * 保留指定小数
+     *
+     * @param number
+     * @return
+     */
+    public static String toAppointDecimal(String number, int decimal) {
+        StringBuilder stringBuilder = new StringBuilder();
+        stringBuilder.append("0.");
+        for (int i = 0; i < decimal; i++) {
+            stringBuilder.append("0");
+        }
+        String style = stringBuilder.toString();
+        DecimalFormat df = getDefaultDecimalFormat(style);
+        return df.format(_toAppointDecimal(number, decimal));
+    }
+
+    /**
+     * 保留6位小数
+     *
+     * @param number
+     * @return
+     */
+    public static String to6Decimal(String number) {
+        String style = "0.000000";
+        DecimalFormat df = getDefaultDecimalFormat(style);
+        return df.format(_to6Decimal(number));
     }
 
     /**
@@ -50,8 +91,11 @@ public class NumberUtil {
      * @return
      */
     public static String moneyFormatToCountry(String money) {
+//        if(){
+//
+//        }
         String style = "#,##0.00 CNY";
-        DecimalFormat df = new DecimalFormat(style);
+        DecimalFormat df = getDefaultDecimalFormat(style);
         return df.format(_to2Decimal(money));
     }
 
@@ -63,8 +107,20 @@ public class NumberUtil {
      */
     public static double _to8Decimal(String number) {
         BigDecimal b = new BigDecimal(number);
-        return b.setScale(8, BigDecimal.ROUND_HALF_UP).doubleValue();
+        return b.setScale(8, BigDecimal.ROUND_HALF_DOWN).doubleValue();
     }
+
+    /**
+     * 转成6位小数(四舍五入)
+     *
+     * @param number 数值
+     * @return
+     */
+    public static double _to6Decimal(String number) {
+        BigDecimal b = new BigDecimal(number);
+        return b.setScale(6, BigDecimal.ROUND_DOWN).doubleValue();
+    }
+
 
     /**
      * 转成整数
@@ -85,7 +141,19 @@ public class NumberUtil {
      */
     public static double _to2Decimal(String number) {
         BigDecimal b = new BigDecimal(number);
-        return b.setScale(2, BigDecimal.ROUND_HALF_UP).doubleValue();
+        return b.setScale(2, BigDecimal.ROUND_DOWN).doubleValue();
+    }
+
+
+    /**
+     * 转成指定位数小数(四舍五入)
+     *
+     * @param number 数值
+     * @return
+     */
+    public static double _toAppointDecimal(String number, int decimal) {
+        BigDecimal b = new BigDecimal(number);
+        return b.setScale(decimal, BigDecimal.ROUND_DOWN).doubleValue();
     }
 
     /**
@@ -98,12 +166,6 @@ public class NumberUtil {
     public static double add(String value1, String value2) {
         BigDecimal b1 = new BigDecimal(value1);
         BigDecimal b2 = new BigDecimal(value2);
-        return b1.add(b2).doubleValue();
-    }
-
-    public static double add(double value1, double value2) {
-        BigDecimal b1 = new BigDecimal(Double.toString(value1));
-        BigDecimal b2 = new BigDecimal(Double.toString(value2));
         return b1.add(b2).doubleValue();
     }
 
@@ -150,6 +212,23 @@ public class NumberUtil {
         BigDecimal b1 = new BigDecimal(Double.toString(value1));
         BigDecimal b2 = new BigDecimal(Double.toString(value2));
         return b1.divide(b2, scale, RoundingMode.UP).doubleValue();
+    }
+
+    /**
+     * 判断数字小数位数
+     *
+     * @param num
+     * @return
+     */
+    public static int getDecimal(String num) {
+        return num.substring(num.indexOf(".") + 1).length();
+    }
+
+
+    public static DecimalFormat getDefaultDecimalFormat(String style) {
+        DecimalFormat df = new DecimalFormat(style);
+        df.setRoundingMode(RoundingMode.DOWN);
+        return df;
     }
 
 }

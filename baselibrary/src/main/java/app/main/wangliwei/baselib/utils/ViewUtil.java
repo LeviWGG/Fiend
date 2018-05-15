@@ -146,7 +146,7 @@ public class ViewUtil {
         }
         return statusHeight;
     }
-    
+
     /**
      * 设置向右滑动动效
      *
