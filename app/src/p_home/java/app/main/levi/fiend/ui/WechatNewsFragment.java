@@ -7,13 +7,14 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
 
+import com.scwang.smartrefresh.layout.SmartRefreshLayout;
+
 import app.main.levi.fiend.R;
 import app.main.levi.fiend.bean.Weixin;
 import app.main.levi.fiend.contract.IWechatContract;
 import app.main.levi.fiend.contract.WechatPresenterImp;
 import app.main.levi.fiend.ui.adapter.WechatNewsAdapter;
 import app.main.wangliwei.baselib.base.BaseMVPFragment;
-import app.main.wangliwei.baselib.base.BasePresenter;
 import butterknife.BindView;
 
 /**
@@ -25,6 +26,8 @@ public class WechatNewsFragment extends BaseMVPFragment<IWechatContract.IWechatP
 
     @BindView(R.id.recycler_only)
     RecyclerView recyclerView;
+    @BindView(R.id.smartRefresh)
+    SmartRefreshLayout smartRefreshLayout;
 
     private WechatNewsAdapter adapter;
 
@@ -44,6 +47,7 @@ public class WechatNewsFragment extends BaseMVPFragment<IWechatContract.IWechatP
         adapter = new WechatNewsAdapter();
 
         recyclerView.setLayoutManager(new LinearLayoutManager(_mActivity));
+        recyclerView.setAdapter(adapter);
     }
 
     @Override

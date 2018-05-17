@@ -6,6 +6,8 @@ import app.main.levi.fiend.http.ServiceFactory;
 import app.main.levi.fiend.http.WeixinService;
 import io.reactivex.Observable;
 import io.reactivex.android.schedulers.AndroidSchedulers;
+import io.reactivex.disposables.Disposable;
+import io.reactivex.functions.Consumer;
 import io.reactivex.schedulers.Schedulers;
 import retrofit2.Retrofit;
 
@@ -31,6 +33,12 @@ public class WechatModelImp implements IWechatContract.IWechatModel{
     public Observable<Weixin> getWechatNews() {
         return weixinService.getWeixinNews(page,10,"json",KEY)
                 .subscribeOn(Schedulers.io())
-                .observeOn(AndroidSchedulers.mainThread());
+                .observeOn(AndroidSchedulers.mainThread())
+                .doOnSubscribe(new Consumer<Disposable>() {
+                    @Override
+                    public void accept(Disposable disposable) throws Exception {
+                        page++;
+                    }
+                });
     }
 }
