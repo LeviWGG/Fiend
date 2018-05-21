@@ -1,16 +1,12 @@
 package app.main.levi.fiend.ui.adapter;
 
-import android.support.annotation.Nullable;
 import android.widget.ImageView;
 
 import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.chad.library.adapter.base.BaseViewHolder;
 
-import java.util.List;
-
 import app.main.levi.fiend.R;
 import app.main.levi.fiend.bean.Weixin;
-import app.main.wangliwei.baselib.base.BaseMVPFragment;
 import app.main.wangliwei.baselib.utils.GlideApp;
 
 /**
@@ -27,6 +23,7 @@ public class WechatNewsAdapter extends BaseQuickAdapter<Weixin.ResultBean.ListBe
     protected void convert(BaseViewHolder helper, Weixin.ResultBean.ListBean item) {
         GlideApp.with(mContext).load(item.getFirstImg()).into((ImageView) helper.getView(R.id.view_picture));
         helper.setText(R.id.text_title,item.getTitle())
-                .setText(R.id.text_source,item.getSource());
+                .setText(R.id.text_source,item.getSource())
+                .addOnClickListener(R.id.layout_item);
     }
 }
