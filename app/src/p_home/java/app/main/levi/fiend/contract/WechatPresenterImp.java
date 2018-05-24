@@ -31,6 +31,17 @@ public class WechatPresenterImp extends IWechatContract.IWechatPresenter {
     }
 
     @Override
+    public void getWechatMore() {
+        mModel.getWechatNews()
+                .subscribe(new Consumer<Weixin>() {
+                    @Override
+                    public void accept(Weixin weixin) throws Exception {
+                        mView.onLoadMore(weixin);
+                    }
+                });
+    }
+
+    @Override
     public void onStart() {
 
     }

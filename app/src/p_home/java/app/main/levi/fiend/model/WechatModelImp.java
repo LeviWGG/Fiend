@@ -41,4 +41,18 @@ public class WechatModelImp implements IWechatContract.IWechatModel{
                     }
                 });
     }
+
+    @Override
+    public Observable<Weixin> getWechatMore() {
+        page = 1;
+        return weixinService.getWeixinNews(page,10,"json",KEY)
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .doOnSubscribe(new Consumer<Disposable>() {
+                    @Override
+                    public void accept(Disposable disposable) throws Exception {
+                        page++;
+                    }
+                });
+    }
 }

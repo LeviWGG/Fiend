@@ -22,13 +22,19 @@ public interface IWechatContract {
         }
 
         public abstract void getWechatNews();
+
+        public abstract void getWechatMore();
     }
 
     interface IWechatView {
         void onSuccess(Weixin weixin);
+
+        void onLoadMore(Weixin weixin);
      }
 
     interface IWechatModel {
         Observable<Weixin> getWechatNews();
+
+        Observable<Weixin> getWechatMore();
     }
 }

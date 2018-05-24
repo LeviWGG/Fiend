@@ -11,6 +11,8 @@ import android.view.View;
 
 import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.scwang.smartrefresh.layout.SmartRefreshLayout;
+import com.scwang.smartrefresh.layout.api.RefreshLayout;
+import com.scwang.smartrefresh.layout.listener.OnRefreshLoadmoreListener;
 
 import java.util.List;
 
@@ -68,8 +70,18 @@ public class WechatNewsFragment extends BaseMVPFragment<IWechatContract.IWechatP
         recyclerView.setLayoutManager(new LinearLayoutManager(_mActivity));
         recyclerView.setAdapter(adapter);
 
-        showProgressDialog("请稍后");
-        mPresenter.getWechatNews();
+        smartRefreshLayout.setOnRefreshLoadmoreListener(new OnRefreshLoadmoreListener() {
+            @Override
+            public void onLoadmore(RefreshLayout refreshlayout) {
+                mPresenter.getWechatMore();
+            }
+
+            @Override
+            public void onRefresh(RefreshLayout refreshlayout) {
+                mPresenter.getWechatNews();
+            }
+        });
+        smartRefreshLayout.autoRefresh();
     }
 
     @Override
@@ -79,8 +91,15 @@ public class WechatNewsFragment extends BaseMVPFragment<IWechatContract.IWechatP
 
     @Override
     public void onSuccess(Weixin weixin) {
-        hideProgressDialog();
+        smartRefreshLayout.finishRefresh();
         listBeans = weixin.getResult().getList();
-        adapter.addData(listBeans);
+        adapter.setNewData(listBeans);
+    }
+
+    @Override
+    public void onLoadMore(Weixin weixin) {
+        smartRefreshLayout.finishLoadmore();
+        listBeans.addAll(weixin.getResult().getList());
+        adapter.addData(weixin.getResult().getList());
     }
 }
