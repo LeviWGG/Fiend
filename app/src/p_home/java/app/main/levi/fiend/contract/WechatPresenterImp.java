@@ -32,7 +32,7 @@ public class WechatPresenterImp extends IWechatContract.IWechatPresenter {
 
     @Override
     public void getWechatMore() {
-        mModel.getWechatNews()
+        mModel.getWechatMore()
                 .subscribe(new Consumer<Weixin>() {
                     @Override
                     public void accept(Weixin weixin) throws Exception {

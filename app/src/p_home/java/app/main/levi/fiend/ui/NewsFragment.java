@@ -6,18 +6,16 @@ import android.support.annotation.Nullable;
 import android.view.View;
 
 import app.main.levi.fiend.R;
+import app.main.levi.fiend.bean.NewsInfo;
+import app.main.levi.fiend.contract.INewsContract;
 import app.main.wangliwei.baselib.base.BaseMVPFragment;
-import app.main.wangliwei.baselib.base.BasePresenter;
 
 /**
  * Created by wlw on 2018/5/9.
  */
 
-public class NewsFragment extends BaseMVPFragment {
-    @Override
-    public BasePresenter initPresenter() {
-        return null;
-    }
+public class NewsFragment extends BaseMVPFragment<INewsContract.INewsPresenter>
+        implements INewsContract.INewsView {
 
     @Override
     public int getLayoutId() {
@@ -32,6 +30,21 @@ public class NewsFragment extends BaseMVPFragment {
 
     @Override
     public void initView(@Nullable Bundle savedInstanceState) {
+
+    }
+
+    @Override
+    public INewsContract.INewsPresenter initPresenter() {
+        return null;
+    }
+
+    @Override
+    public void onSuccess(NewsInfo newsInfo) {
+
+    }
+
+    @Override
+    public void onLoadMore(NewsInfo newsInfo) {
 
     }
 }
