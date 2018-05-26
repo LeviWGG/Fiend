@@ -9,7 +9,7 @@ import android.view.View;
 import com.ogaclejapan.smarttablayout.SmartTabLayout;
 
 import app.main.levi.fiend.R;
-import app.main.levi.fiend.adapter.HomeTabAdpter;
+import app.main.levi.fiend.ui.adapter.HomeTabAdpter;
 import app.main.wangliwei.baselib.base.BaseMVPFragment;
 import app.main.wangliwei.baselib.base.BasePresenter;
 import app.main.wangliwei.baselib.utils.ViewUtil;

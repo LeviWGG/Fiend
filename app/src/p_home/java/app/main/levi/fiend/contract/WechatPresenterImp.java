@@ -2,6 +2,7 @@ package app.main.levi.fiend.contract;
 
 import app.main.levi.fiend.bean.Weixin;
 import app.main.levi.fiend.model.WechatModelImp;
+import io.reactivex.disposables.Disposable;
 import io.reactivex.functions.Consumer;
 
 /**
@@ -22,6 +23,12 @@ public class WechatPresenterImp extends IWechatContract.IWechatPresenter {
     @Override
     public void getWechatNews() {
         mModel.getWechatNews()
+                .doOnSubscribe(new Consumer<Disposable>() {
+                    @Override
+                    public void accept(Disposable disposable) throws Exception {
+                        addDisposable(disposable);
+                    }
+                })
                 .subscribe(new Consumer<Weixin>() {
                     @Override
                     public void accept(Weixin weixin) throws Exception {
@@ -33,6 +40,12 @@ public class WechatPresenterImp extends IWechatContract.IWechatPresenter {
     @Override
     public void getWechatMore() {
         mModel.getWechatMore()
+                .doOnSubscribe(new Consumer<Disposable>() {
+                    @Override
+                    public void accept(Disposable disposable) throws Exception {
+                        addDisposable(disposable);
+                    }
+                })
                 .subscribe(new Consumer<Weixin>() {
                     @Override
                     public void accept(Weixin weixin) throws Exception {

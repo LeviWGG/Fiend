@@ -22,6 +22,7 @@ import app.main.levi.fiend.contract.IWechatContract;
 import app.main.levi.fiend.contract.WechatPresenterImp;
 import app.main.levi.fiend.ui.adapter.WechatNewsAdapter;
 import app.main.wangliwei.baselib.base.BaseMVPFragment;
+import app.main.wangliwei.baselib.utils.SimpleToast;
 import butterknife.BindView;
 
 /**
@@ -58,9 +59,9 @@ public class WechatNewsFragment extends BaseMVPFragment<IWechatContract.IWechatP
             @Override
             public void onItemChildClick(BaseQuickAdapter adapter, View view, int position) {
                 if (listBeans.get(position).getUrl().isEmpty()) {return;}
-                Log.d("item","url: "+view.getTag());
+                Log.d("item","url: "+listBeans.get(position).getUrl());
                 Bundle bundle = new Bundle();
-                bundle.putString("URL",(String)view.getTag());
+                bundle.putString("URL",listBeans.get(position).getUrl());
                 Intent intent = new Intent(getActivity(),WebDetailActivity.class);
                 intent.putExtras(bundle);
                 startActivity(intent,bundle);
@@ -91,6 +92,10 @@ public class WechatNewsFragment extends BaseMVPFragment<IWechatContract.IWechatP
 
     @Override
     public void onSuccess(Weixin weixin) {
+        if (0 == weixin.getResult().getList().size()) {
+            SimpleToast.showShort("没有更多了");
+            return;
+        }
         smartRefreshLayout.finishRefresh();
         listBeans = weixin.getResult().getList();
         adapter.setNewData(listBeans);
@@ -98,6 +103,10 @@ public class WechatNewsFragment extends BaseMVPFragment<IWechatContract.IWechatP
 
     @Override
     public void onLoadMore(Weixin weixin) {
+        if (0 == weixin.getResult().getList().size()) {
+            SimpleToast.showShort("没有更多了");
+            return;
+        }
         smartRefreshLayout.finishLoadmore();
         listBeans.addAll(weixin.getResult().getList());
         adapter.addData(weixin.getResult().getList());

@@ -8,7 +8,7 @@
     <com.ogaclejapan.smarttablayout.SmartTabLayout
         android:id="@+id/layout_tab_home"
         android:layout_width="match_parent"
-        android:layout_height="70dp"
+        android:layout_height="85dp"
         android:paddingTop="30dp"
         app:stl_defaultTabTextColor="@drawable/tab_home"
         app:stl_defaultTabTextSize="16sp"
@@ -16,9 +16,14 @@
         app:stl_dividerColor="@android:color/transparent"
         app:stl_indicatorColor="@color/Color_ff4040"
         app:stl_indicatorThickness="2dp"
-        app:stl_indicatorWidth="45dp"
+        app:stl_indicatorWidth="80dp"
         app:stl_underlineThickness="0dp">
     </com.ogaclejapan.smarttablayout.SmartTabLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@color/Color_F3F5F9" />
 
     <android.support.v4.view.ViewPager
         android:id="@+id/view_paper"

@@ -1,4 +1,4 @@
-package app.main.levi.fiend.adapter;
+package app.main.levi.fiend.ui.adapter;
 
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
