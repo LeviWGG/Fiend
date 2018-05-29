@@ -8,6 +8,7 @@ import android.view.View;
 import app.main.levi.fiend.R;
 import app.main.wangliwei.baselib.base.BaseMVPFragment;
 import app.main.wangliwei.baselib.base.BasePresenter;
+import butterknife.OnClick;
 
 /**
  * Created by wlw on 2018/5/7.
@@ -33,5 +34,14 @@ public class MineFragment extends BaseMVPFragment {
     @Override
     public void initView(@Nullable Bundle savedInstanceState) {
 
+    }
+
+    @OnClick({R.id.image_back})
+    public void onClick(View view) {
+        switch (view.getId()) {
+            case R.id.image_back :
+                break;
+            default:
+        }
     }
 }
