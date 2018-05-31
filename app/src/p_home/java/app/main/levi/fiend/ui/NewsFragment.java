@@ -91,7 +91,7 @@ public class NewsFragment extends BaseMVPFragment<INewsContract.INewsPresenter>
 
     @Override
     public void onSuccess(NewsInfo newsInfo) {
-        if (0 == newsInfo.getT1348647909107().size()) {
+        if (newsInfo.getT1348647909107().isEmpty()) {
             SimpleToast.showShort("没有更多了");
             return;
         }
@@ -102,7 +102,7 @@ public class NewsFragment extends BaseMVPFragment<INewsContract.INewsPresenter>
 
     @Override
     public void onLoadMore(NewsInfo newsInfo) {
-        if (0 == newsInfo.getT1348647909107().size()) {
+        if (newsInfo.getT1348647909107().isEmpty()) {
             SimpleToast.showShort("没有更多了");
             return;
         }
