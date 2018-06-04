@@ -1,34 +1,53 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <com.ogaclejapan.smarttablayout.SmartTabLayout
-        android:id="@+id/layout_tab_home"
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="65dp"
-        android:paddingTop="20dp"
-        app:stl_defaultTabTextColor="@drawable/tab_home"
-        app:stl_defaultTabTextSize="16sp"
-        app:stl_distributeEvenly="true"
-        app:stl_dividerColor="@android:color/transparent"
-        app:stl_indicatorColor="@color/Color_ff4040"
-        app:stl_indicatorThickness="2dp"
-        app:stl_indicatorWidth="80dp"
-        app:stl_underlineThickness="0dp">
-    </com.ogaclejapan.smarttablayout.SmartTabLayout>
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+        <com.ogaclejapan.smarttablayout.SmartTabLayout
+            android:id="@+id/layout_tab_home"
+            android:layout_width="match_parent"
+            android:layout_height="65dp"
+            android:paddingTop="20dp"
+            app:stl_defaultTabTextColor="@drawable/tab_home"
+            app:stl_defaultTabTextSize="16sp"
+            app:stl_distributeEvenly="true"
+            app:stl_dividerColor="@android:color/transparent"
+            app:stl_indicatorColor="@color/Color_ff4040"
+            app:stl_indicatorThickness="2dp"
+            app:stl_indicatorWidth="80dp"
+            app:stl_underlineThickness="0dp">
+        </com.ogaclejapan.smarttablayout.SmartTabLayout>
 
-    <View
-        android:layout_width="match_parent"
-        android:layout_height="1dp"
-        android:background="@color/Color_F3F5F9" />
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@color/Color_F3F5F9" />
 
-    <android.support.v4.view.ViewPager
-        android:id="@+id/view_paper"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-    </android.support.v4.view.ViewPager>
+        <android.support.v4.view.ViewPager
+            android:id="@+id/view_paper"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+        </android.support.v4.view.ViewPager>
+    </LinearLayout>
 
-</LinearLayout>
+    <android.support.design.widget.FloatingActionButton
+        android:id="@+id/floating_btn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="15dp"
+        app:borderWidth="0dp"
+        android:scaleType="center"
+        app:fabSize="normal"
+        app:elevation="0dp"
+        app:pressedTranslationZ="0dp"
+        android:alpha="0.7"
+        android:layout_gravity="bottom|end"
+        android:src="@drawable/refresh"
+        android:backgroundTint="@color/Color_FFFFFF"/>
+
+</FrameLayout>

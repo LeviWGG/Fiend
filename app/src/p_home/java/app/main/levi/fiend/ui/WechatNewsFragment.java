@@ -71,6 +71,15 @@ public class WechatNewsFragment extends BaseMVPFragment<IWechatContract.IWechatP
         recyclerView.setLayoutManager(new LinearLayoutManager(_mActivity));
         recyclerView.setAdapter(adapter);
 
+        ((HomeFragment)getParentFragment()).setOnRefreshListener(new HomeFragment.OnRefreshListener() {
+            @Override
+            public void refresh() {
+                if (getUserVisibleHint()) {
+                    smartRefreshLayout.autoRefresh();
+                }
+            }
+        });
+
         smartRefreshLayout.setOnRefreshLoadmoreListener(new OnRefreshLoadmoreListener() {
             @Override
             public void onLoadmore(RefreshLayout refreshlayout) {

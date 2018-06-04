@@ -70,6 +70,15 @@ public class NewsFragment extends BaseMVPFragment<INewsContract.INewsPresenter>
         });
         recyclerView.setAdapter(newsAdapter);
 
+        ((HomeFragment)getParentFragment()).setOnRefreshListener(new HomeFragment.OnRefreshListener() {
+            @Override
+            public void refresh() {
+                if (getUserVisibleHint()) {
+                    smartRefreshLayout.autoRefresh();
+                }
+            }
+        });
+
         smartRefreshLayout.setOnRefreshLoadmoreListener(new OnRefreshLoadmoreListener() {
             @Override
             public void onLoadmore(RefreshLayout refreshlayout) {
