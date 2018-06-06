@@ -1,4 +1,4 @@
-package app.main.wangliwei.baselib.utils;
+package app.main.wangliwei.baselib.utils.constant;
 
 import android.Manifest;
 import android.Manifest.permission;
