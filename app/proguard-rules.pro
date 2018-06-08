@@ -19,3 +19,14 @@
 # If you keep the line number information, uncomment this to
 # hide the original source file name.
 #-renamesourcefileattribute SourceFile
+
+#Bugly
+-dontwarn com.tencent.bugly.**
+-keep public class com.tencent.bugly.**{*;}
+
+#Tinker
+-dontwarn com.tencent.tinker.**
+-keep class com.tencent.tinker.** { *; }
+
+#support-v4
+ -keep class android.support.**{*;}
