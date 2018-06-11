@@ -101,7 +101,7 @@ public class WechatNewsFragment extends BaseMVPFragment<IWechatContract.IWechatP
 
     @Override
     public void onSuccess(Weixin weixin) {
-        if (weixin.getResult().getList().isEmpty()) {
+        if (null == weixin.getResult() || null == weixin.getResult().getList() || weixin.getResult().getList().isEmpty()) {
             SimpleToast.showShort("没有更多了");
             return;
         }
@@ -112,7 +112,7 @@ public class WechatNewsFragment extends BaseMVPFragment<IWechatContract.IWechatP
 
     @Override
     public void onLoadMore(Weixin weixin) {
-        if (weixin.getResult().getList().isEmpty()) {
+        if (null == weixin.getResult() || null == weixin.getResult().getList() || weixin.getResult().getList().isEmpty()) {
             SimpleToast.showShort("没有更多了");
             return;
         }
