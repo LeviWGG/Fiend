@@ -42,7 +42,7 @@
                 android:layout_gravity="center_vertical"
                 android:textColor="@color/Color_F3F5F9"
                 android:textSize="15sp"
-                android:text="Mi"/>
+                android:text="mi"/>
         </LinearLayout>
     </LinearLayout>
 
@@ -65,6 +65,7 @@
     </LinearLayout>
 
     <LinearLayout
+        android:id="@+id/layout_abort"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"

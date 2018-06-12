@@ -5,7 +5,7 @@ def bakPath = file("${buildDir}/bakApk/")
 /**
  * 此处填写每次构建生成的基准包目录
  */
-def baseApkDir = "app-0208-15-10-00"
+def baseApkDir = "app-0612-10-19-37"
 
 /**
  * 对于插件各参数的详细解析请参考
@@ -34,8 +34,8 @@ tinkerSupport {
     baseApkResourceMapping = "${bakPath}/${baseApkDir}/app-release-R.txt"
 
     // 构建基准包和补丁包都要指定不同的tinkerId，并且必须保证唯一性
-    tinkerId =  "base-" + rootProject.ext.android.versionName//打基准包，准备发布的包必须保存 apk mapping R
-//    tinkerId = rootProject.ext.android.versionName + ".0" + "-patch"//打补丁包 同一基准包，补丁'.0'数值必须不同
+//    tinkerId =  "base-" + rootProject.ext.android.versionName//打基准包，准备发布的包必须保存 apk mapping R
+    tinkerId = rootProject.ext.android.versionName + ".3"//打补丁包 同一基准包，补丁'.0'数值必须不同
 
     // 构建多渠道补丁时使用
     // buildAllFlavorsDir = "${bakPath}/${baseApkDir}"
