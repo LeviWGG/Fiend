@@ -128,7 +128,7 @@ public class MainFragment extends BaseMVPFragment {
         if(isExit) {
             _mActivity.finish();
         }else {
-            SimpleToast.showShort("再按一次退出应用");
+            SimpleToast.showShort("再按一次退出");
             isExit = true;
             new Handler().postDelayed(new Runnable() {
                 @Override
