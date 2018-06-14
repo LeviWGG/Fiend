@@ -50,6 +50,12 @@ android {
             }
         }
     }
+
+    dexOptions {
+        //默认开启
+        //incremental true
+        javaMaxHeapSize "4g"
+    }
 }
 
 repositories {
