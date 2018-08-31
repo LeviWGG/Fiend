@@ -2,6 +2,8 @@ package app.main.wangliwei.baselib.base;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Looper;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 
@@ -16,6 +18,8 @@ import butterknife.Unbinder;
 public abstract class BaseCompatActivity extends BaseActivity {
     protected WaitProgressDialog mWaitProgressDialog;
     private Unbinder unbinder;
+
+    protected Handler mUiHandler = new Handler(Looper.getMainLooper());
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {

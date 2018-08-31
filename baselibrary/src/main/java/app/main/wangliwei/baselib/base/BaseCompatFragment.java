@@ -1,6 +1,8 @@
 package app.main.wangliwei.baselib.base;
 
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Looper;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.view.LayoutInflater;
@@ -23,6 +25,8 @@ public abstract class BaseCompatFragment extends BaseFragment {
     protected WaitProgressDialog mWaitProgressDialog;
     private View view;
     private Unbinder unbinder;
+
+    protected Handler mUiHandler = new Handler(Looper.getMainLooper());
 
     @Nullable
     @Override
